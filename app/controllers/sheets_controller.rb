@@ -13,6 +13,7 @@ class SheetsController < ApplicationController
   # GET /sheets/new
   def new
     @sheet = Sheet.new
+
   end
 
   # GET /sheets/1/edit
@@ -22,6 +23,12 @@ class SheetsController < ApplicationController
   # POST /sheets or /sheets.json
   def create
     @sheet = Sheet.new(sheet_params)
+
+    5.times do |index|
+      column_name = "Column #{index + 1}"
+      @sheet.columns.build({name: column_name})
+      puts(index)
+    end
 
     respond_to do |format|
       if @sheet.save
@@ -58,6 +65,7 @@ class SheetsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_sheet
       @sheet = Sheet.find(params[:id])
