@@ -65,6 +65,6 @@ class ColumnsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def column_params
-      params.fetch(:column, {})
+      params.require(:column).permit(:name)
     end
 end
